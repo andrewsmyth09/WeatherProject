@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import WeatherForm from './WeatherForm';
+import WeatherInfo from './WeatherInfo';
 
 export default function Weather() {
   const [temperature, setTemperature] = useState('');
   const [city, setCity] = useState('');
-  const [realFeel, setRealFeel] = useState('');
+  const [clouds, setClouds] = useState('');
 
   const handleSubmit = (location) => {
     locationApi(location);
@@ -26,10 +27,10 @@ export default function Weather() {
       })
       .then((data) => {
         const roundedTemp = Math.round(data.main.temp);
-        const feelTemp = Math.round(data.main.feels_like);
+        const clouds = data.clouds.all;
         const cityName = data.name;
         setTemperature(roundedTemp);
-        setRealFeel(feelTemp);
+        setClouds(clouds);
         setCity(cityName);
       })
       .catch((err) => {
@@ -43,13 +44,9 @@ export default function Weather() {
         <h1 className="text-4xl font-bold mb-4">Weather Forecast</h1>
         <WeatherForm onSubmit={handleSubmit} />
 
-        <div className="grid grid-cols-3 mt-4">
-          <span>City: {city}</span>
-          <span>Temperature: {temperature}°C</span>
-          <span>Real Feel: {realFeel}°C</span>
+        <WeatherInfo city={city} temperature={temperature} clouds={clouds} />
         </div>
       </div>
-    </div>
   );
 }
 

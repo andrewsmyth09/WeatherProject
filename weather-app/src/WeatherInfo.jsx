@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types';
 
-const WeatherInfo = ({ city, temperature, realFeel }) => {
+const WeatherInfo = ({ city, temperature, clouds }) => {
   return (
-    <div className="grid grid-cols-3 mt-4">
-      <span>City: {city}</span>
-      <span>Temperature: {temperature}°C</span>
-      <span>Real Feel: {realFeel}°C</span>
+    <div className="grid grid-cols-6 mt-4">
+      <span className="material-symbols-outlined">location_city</span>
+      <span>{city}</span>
+      <span className="material-symbols-outlined">thermostat</span>
+      <span>{temperature}°C</span>
+      <span className="material-symbols-outlined">cloud</span>
+      <span>{clouds}%</span>
     </div>
   );
 };
@@ -13,7 +16,7 @@ const WeatherInfo = ({ city, temperature, realFeel }) => {
 WeatherInfo.propTypes = {
   city: PropTypes.string.isRequired,
   temperature: PropTypes.number.isRequired,
-  realFeel: PropTypes.number.isRequired,
+  clouds: PropTypes.number.isRequired,
 };
 
 export default WeatherInfo;
