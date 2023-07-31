@@ -27,6 +27,7 @@ const WeatherForm = ({ onSubmit }) => {
       <input
         type="submit"
         className="form-input px-4 py-3 bg-slate-300 border border-black hover:bg-white"
+        value="Submit"
       />
     </form>
   );

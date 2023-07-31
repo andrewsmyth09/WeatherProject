@@ -6,6 +6,7 @@ export default function Weather() {
   const [temperature, setTemperature] = useState('');
   const [city, setCity] = useState('');
   const [clouds, setClouds] = useState('');
+  const [isWeatherDisplayVisible, setWeatherDisplayVisible] = useState(false);
 
   const handleSubmit = (location) => {
     locationApi(location);
@@ -32,6 +33,7 @@ export default function Weather() {
         setTemperature(roundedTemp);
         setClouds(clouds);
         setCity(cityName);
+        setWeatherDisplayVisible(true);
       })
       .catch((err) => {
         console.log(`Error fetching new data:  ${err}`);
@@ -44,7 +46,7 @@ export default function Weather() {
         <h1 className="text-4xl font-bold mb-4">Weather Forecast</h1>
         <WeatherForm onSubmit={handleSubmit} />
 
-        <WeatherInfo city={city} temperature={temperature} clouds={clouds} />
+        <WeatherInfo city={city} temperature={temperature} clouds={clouds} display={isWeatherDisplayVisible} />
         </div>
       </div>
   );
